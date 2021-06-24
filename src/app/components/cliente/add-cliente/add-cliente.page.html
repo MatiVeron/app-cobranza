@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="secondary" class="ion-text-center">
+    <ion-title> <ion-icon name="person-add"></ion-icon> Nuevo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-card class="card">
+  <ion-card-header color="primary">  
+    <ion-card-title> <ion-icon name="accessibility"></ion-icon> Datos del cliente</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Nombre</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Apellido</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Direccion</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">N°Cel</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+
+  </ion-card-content>
+
+</ion-card>
+
+    <!--datos de la venta-->
+
+    <ion-card class="card">
+      <ion-card-header color="primary">
+        
+        <ion-card-title><ion-icon name="cash"></ion-icon> Datos de la venta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+            
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Cel.comprado</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Cel. en parte de pago</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Entrega</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Cuotas</ion-label>
+      <ion-input></ion-input>
+    </ion-item> 
+      </ion-card-content>
+    </ion-card>
+
+<ion-toolbar>
+  <ion-button (click)="onClick()" expand="block"  shape="round" color="tertiary">
+    <ion-icon name="checkbox"></ion-icon>listo
+  </ion-button>
+</ion-toolbar>
+  
+
+
+
+
+
+
+  
+</ion-content>
