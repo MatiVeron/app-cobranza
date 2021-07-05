@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClientesService } from  '../services/clientes.service'
 
 @Component({
   selector: 'app-home',
@@ -7,33 +8,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  public clientes =[{
-    id: 0,
-    name: 'Walter',
-    surname: 'Ovejero',
-    address:'Calle 8',
-    dni: 87543135,
-    recomendedTo: 'Damian',
+  public clientes =[]
+  constructor(private clientesService : ClientesService) {}
 
-  },
-  {
-    id: 2,
-    name: 'Matias',
-    surname: 'Veron',
-    address:'Calle 12',
-    dni: 9785835,
-    recomendedTo: 'Alguien',
-  },
+  ngOnInit(){
+    this.clientes = this.clientesService.getClientes()
+  
+  }
 
-    {
-      id: 3,
-      name: 'Mauro',
-      surname: 'Lobos',
-      address:'Calle 200',
-      dni: 1012014,
-      recomendedTo: 'Algun otro',
-    }
-]
-  constructor() {}
+
 
 }
+
+

@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar color="secondary" class="ion-text-center">
+    
+      <ion-button routerLink="/home" routerLinkActive="router-link-active"  size="small" shape="round" slot="start" color="primary">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title> <ion-icon name="accessibility"></ion-icon>Ver cliente</ion-title>
+  
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+<ion-card color="primary"> <!--Card de los datos del cliente-->
+  <ion-card-header>
+    <ion-item color="primary">
+      <ion-label class="ion-text-center"> <ion-icon name="person-circle"></ion-icon>Datos del Cliente</ion-label>
+      <ion-button (click)="mostrarDatosCliente = !mostrarDatosCliente" fill="outline" size="Small" shape="round" color="tertiary">
+        +
+      </ion-button>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content *ngIf="mostrarDatosCliente"> 
+    <ion-item color="primary">
+    <ion-label>Nombre: Veron Matias</ion-label>
+  </ion-item>
+  <ion-item color="primary">
+    <ion-label>Direccion: Pividal 1673</ion-label>
+  </ion-item>
+  <ion-item color="primary">
+    <ion-label>DNI: 373753654</ion-label>
+  </ion-item>
+  </ion-card-content>
+</ion-card>
+
+
+
+<ion-card color="primary"> <!--Card del detalle de la venta-->
+  <ion-card-header>
+    <ion-item color="primary">
+      <ion-label class="ion-text-center"> <ion-icon name="cash"></ion-icon>Datos de la venta</ion-label>
+      <ion-button (click)="mostrarDetalleVenta = !mostrarDetalleVenta" fill="outline" size="Small" shape="round" color="tertiary">
+        +
+      </ion-button>
+    </ion-item>
+  </ion-card-header>
+  <ion-card-content *ngIf="mostrarDetalleVenta">
+    <ion-item color="primary">
+      <ion-label> Xiaomi redmi note 7 Pro</ion-label>
+    </ion-item>
+    <ion-item color="primary">
+      <ion-label>Entrego:16.000$</ion-label>
+    </ion-item>
+
+  </ion-card-content>
+</ion-card>
+
+
+
+<ion-card color="primary"> <!-- Card de las cuotas-->
+  <ion-card-header>
+    <ion-item color="primary">
+      <ion-label class="ion-text-center"> <ion-icon name="card"></ion-icon>Cuotas</ion-label>
+      <ion-button (click)="mostrarCuotas= !mostrarCuotas" fill="outline" size="Small" color="tertiary" shape="round">
+        +
+      </ion-button>
+    </ion-item>
+
+  </ion-card-header>
+  <ion-list color="primary" *ngIf="mostrarCuotas">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Cuota 1/12</ion-card-subtitle>
+      </ion-card-header>
+        <ion-item>
+          <ion-label> VTO:24/7/2021</ion-label>
+          <ion-label>Monto:120.000$</ion-label>
+          <ion-checkbox slot="end" ></ion-checkbox>
+        </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Cuota 2/12</ion-card-subtitle>
+      </ion-card-header>
+        <ion-item>
+          <ion-label> VTO:24/8/2021</ion-label>
+          <ion-label>Monto:120.000$</ion-label>
+          <ion-checkbox slot="end" ></ion-checkbox>
+        </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Cuota 3/12</ion-card-subtitle>
+      </ion-card-header>
+        <ion-item>
+          <ion-label> VTO:24/9/2021</ion-label>
+          <ion-label>Monto:120.000$</ion-label>
+          <ion-checkbox slot="end" ></ion-checkbox>
+        </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-toolbar *ngIf="mostrarCuotas" color="primary">
+    <ion-button (click)="onClick()" expand="block"  shape="round" color="secondary">
+      <ion-icon name="cash"></ion-icon>Pagar seleccionados
+    </ion-button>
+  </ion-toolbar>
+</ion-card>
+
+
+</ion-content>
