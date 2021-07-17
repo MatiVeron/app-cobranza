@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'detalle-cliente',
     loadChildren: () => import('./components/cliente/detalle-cliente/detalle-cliente.module').then( m => m.DetalleClientePageModule)
   },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./components/calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./components/calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
 
 
 
