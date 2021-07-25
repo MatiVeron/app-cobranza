@@ -7,7 +7,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { Calendar } from '@ionic-native/calendar/ngx';
+
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import {  AngularFirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { Calendar } from '@ionic-native/calendar/ngx';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
 
 
     

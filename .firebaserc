@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "app-cobro": {
+      "hosting": {
+        "app": [
+          "app-cobro"
+        ]
+      }
+    }
+  }
+}

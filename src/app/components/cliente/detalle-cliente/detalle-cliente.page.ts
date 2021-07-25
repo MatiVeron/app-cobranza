@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientesService } from 'src/app/services/clientes.service';
 
 @Component({
   selector: 'app-detalle-cliente',
@@ -11,9 +12,17 @@ export class DetalleClientePage implements OnInit {
   mostrarDatosCliente:boolean=false;
   mostrarDetalleVenta:boolean = false;
 
-  constructor() { }
+  constructor(
+    private clientesService:ClientesService,
+
+  ) { }
 
   ngOnInit() {
+  }
+
+
+  onVerDetalleCliente(id){
+    
   }
 
 }

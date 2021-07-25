@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar color="secondary" class="ion-text-center">
+    <ion-button routerLink="/home" routerLinkActive="router-link-active"  size="small"  slot="start" color="secondary">
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-button>
     <ion-title> <ion-icon name="person-add"></ion-icon> Nuevo</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,25 +16,30 @@
   <ion-card-content>
     <ion-item>
       <ion-label position="floating" color="tertiary">Nombre</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="nombre" ></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="floating" color="tertiary">Apellido</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="apellido"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="floating" color="tertiary">Direccion</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="direccion"></ion-input>
+    </ion-item> 
+
+    <ion-item>
+      <ion-label position="floating" color="tertiary">DNI</ion-label>
+      <ion-input [(ngModel)]="dni"></ion-input>
     </ion-item> 
 
     <ion-item>
       <ion-label position="floating" color="tertiary">N°Cel</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="cel"></ion-input>
     </ion-item> 
 
     <ion-item>
       <ion-label position="floating" color="tertiary">Recomendado</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="recomendado"></ion-input>
     </ion-item> 
 
 
@@ -51,21 +59,26 @@
             
     <ion-item>
       <ion-label position="floating" color="tertiary">Cel.comprado</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="celComprado"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="floating" color="tertiary">Cel. en parte de pago</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="celPartePago"></ion-input>
     </ion-item> 
     <ion-item>
       <ion-label position="floating" color="tertiary">Entrega</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="entrega"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating" color="tertiary">Valor cuota</ion-label>
+      <ion-input [(ngModel)]="valorCuota"></ion-input>
     </ion-item>
 
     <ion-list color="tertiary">
       <ion-item>
         <ion-label color="tertiary">Cuotas</ion-label>
-        <ion-select color="dark" placeholder ="Cuotas" okText="OK" cancelText="CERRAR" >
+        <ion-select color="dark" placeholder ="Cuotas" okText="OK" cancelText="CERRAR"  [(ngModel)]="cuotas">
           <ion-select-option value="1">1</ion-select-option>
           <ion-select-option value="2">2</ion-select-option>
           <ion-select-option value="3">3</ion-select-option>
@@ -96,8 +109,6 @@
           <ion-select-option value="28">28</ion-select-option>
           <ion-select-option value="29">29</ion-select-option>
           <ion-select-option value="30">30</ion-select-option>
-
-          
         </ion-select>
       </ion-item>
     
@@ -108,7 +119,7 @@
 
 
 <ion-toolbar>
-  <ion-button [routerLink]="['/']" routerLinkActive="router-link-active"  expand="block"  shape="round" color="tertiary">
+  <ion-button (click)="onAddCliente()" routerLinkActive="router-link-active"  expand="block"  shape="round" color="tertiary">
     <ion-icon name="checkbox"></ion-icon>listo
   </ion-button>
 </ion-toolbar>
