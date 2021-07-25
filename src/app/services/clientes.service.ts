@@ -1,40 +1,87 @@
 import { Injectable } from '@angular/core';
-import{BehaviorSubject, interval}from "rxjs";
-import {map, switchMap, switchMapTo} from 'rxjs/operators'
-import{AngularFirestore} from '@angular/fire/firestore';
+import{BehaviorSubject, interval, Observable}from "rxjs";
+import {map, switchMap} from 'rxjs/operators'
+import{AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import firebase from 'firebase';
+import { Cliente } from '../interfaces/cliente';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
 
-  public clientes$ = new BehaviorSubject(null);
-  public allClientes$;
+  // public clientes$ = new BehaviorSubject(null);
+  // public allClientes$;
+
+  private clientesCollection:AngularFirestoreCollection<Cliente>;
+  private cliente$: Observable<Cliente[]>;
+
+  
   constructor(
     private db:AngularFirestore
   ) {
     console.log('Servicio de clientes iniciado')
 
-    this.allClientes$ = this.clientes$.pipe( 
-      switchMap(()=>{ 
-         return this.db.collection('clientes').valueChanges();
-      })
+    this.clientesCollection = this.db.collection<Cliente>('clientes');
+    this.cliente$ = this.clientesCollection.snapshotChanges().pipe(
+       map(actions=>{
+         return actions.map(a=>{
+           const data = a.payload.doc.data();
+           const id= a.payload.doc.id;
+           return {id,...data}
+         })
+       })
     )
+
+
+
+    // this.allClientes$ = this.clientes$.pipe( 
+    //   switchMap(()=>{ 
+    //      return this.db.collection('clientes').valueChanges()
+    //   }));
+      
+  
+
    
+  } //fin del constructor
+
+  getClientes(){
+    return this.cliente$;
   }
 
-  addCliente(cliente){
-    this.db.collection('clientes').add({
-      ...cliente,
-      fecha:firebase.firestore.FieldValue.serverTimestamp(),
-      
-      
-    })
+  getCliente(id:string){
+    return this.clientesCollection.doc<Cliente>(id).valueChanges();
   }
 
-  getClienteById(id){
-    return this.db.collection('clientes').doc(id).valueChanges();
+
+  updateCliente(cliente:Cliente,id:string){
+    return this.clientesCollection.doc(id).update(cliente);
   }
+
+  addCliente(cliente:Cliente){
+    return this.clientesCollection.add(cliente);
+  }
+
+  removeCliente(id:string){
+    return this.clientesCollection.doc(id).delete();
+  }
+
+  // addCliente(cliente){
+  //   const id = this.db.createId();
+  //   this.db.collection('clientes').add({
+  //     id,
+  //     ...cliente,
+  //     fecha:firebase.firestore.FieldValue.serverTimestamp(),
+      
+      
+  //   })
+  // }
+
+
+
+  // getClienteById(id){
+  //   return this.db.collection('clientes').doc(id).valueChanges();
+  // }
 
 
 

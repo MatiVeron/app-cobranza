@@ -21,16 +21,26 @@
       </ion-button>
     </ion-item>
     
-  </ion-card-header>
-  <ion-card-content *ngFor="let cliente of clientes$| async" *ngIf="mostrarDatosCliente"> 
+  </ion-card-header  >
+  <ion-card-content  *ngIf="mostrarDatosCliente"  > 
     <ion-item color="primary">
-    <ion-label>Nombre:{{cliente.nombre}}</ion-label>
+    <ion-label >Nombre:{{cliente.nombre}}</ion-label>
+  </ion-item>
+ 
+  <ion-item color="primary">
+    <ion-label >Apellido:{{cliente.apellido}}</ion-label>
   </ion-item>
   <ion-item color="primary">
-    <ion-label>Direccion: {{cliente.direccion}}</ion-label>
+    <ion-label>DNI:{{cliente.dni}}</ion-label>
   </ion-item>
   <ion-item color="primary">
-    <ion-label>DNI: {{cliente.dni}}</ion-label>
+    <ion-label>direccion:{{cliente.direccion}}</ion-label>
+  </ion-item>
+  <ion-item color="primary">
+    <ion-label>cel:{{cliente.cel}}</ion-label>
+  </ion-item>
+  <ion-item color="primary">
+    <ion-label>Recomendado:{{cliente.recomendado}}</ion-label>
   </ion-item>
   </ion-card-content>
 </ion-card>
@@ -48,12 +58,14 @@
   </ion-card-header>
   <ion-card-content *ngIf="mostrarDetalleVenta">
     <ion-item color="primary">
-      <ion-label> Xiaomi redmi note 7 Pro</ion-label>
+      <ion-label>cel.Comprado:{{cliente.celComprado}} </ion-label>
     </ion-item>
     <ion-item color="primary">
-      <ion-label>Entrego:16.000$</ion-label>
+      <ion-label>cel.Parte Pago:{{cliente.celPartePago}}</ion-label>
     </ion-item>
-
+    <ion-item color="primary">
+      <ion-label>Entrega:{{cliente.entrega}}</ion-label>
+    </ion-item>
   </ion-card-content>
 </ion-card>
 

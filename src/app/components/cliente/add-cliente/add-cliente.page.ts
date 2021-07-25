@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Cliente } from 'src/app/interfaces/cliente';
 @Component({
   selector: 'app-add-cliente',
   templateUrl: './add-cliente.page.html',
@@ -25,7 +26,8 @@ export class AddClientePage implements OnInit {
   constructor(
     private clientesService:ClientesService,
     public toastController: ToastController,
-    private router:Router
+    private router:Router,
+    
     ) { }
 
   ngOnInit() {
@@ -45,10 +47,12 @@ export class AddClientePage implements OnInit {
      entrega:this.entrega,
      valorCuota:this.valorCuota,
      cuotas:this.cuotas,
-    }
-    )
-    this.clienteAgregado();
-    this.router.navigateByUrl('/')
+    }).then(r =>{
+      this.clienteAgregado(),
+      this.router.navigateByUrl('/');
+    });
+  
+  
     
     
     
@@ -56,7 +60,7 @@ export class AddClientePage implements OnInit {
   }
 
 
-  async clienteAgregado() {
+  async clienteAgregado(){
     const toast = await this.toastController.create({
       message: 'Cliente agregado',
       duration: 2000

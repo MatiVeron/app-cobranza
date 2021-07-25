@@ -1,7 +1,7 @@
 
 <app-header></app-header>
 <ion-content>
-  <ion-card *ngFor="let cliente of clientes$| async"  color="primary" class="card">
+  <ion-card *ngFor="let cliente of clientes"  color="primary" class="card">
     <ion-card-header >
       <ion-card-title class="title">
         <ion-icon name="person-circle"></ion-icon>
@@ -15,11 +15,16 @@
       <ion-item color="primary">
         <ion-label> Domicilio: {{cliente.direccion}}</ion-label>
       </ion-item>
-      <ion-label>id:</ion-label>
-        <ion-button routerLink="/detalle-cliente" routerLinkActive="router-link-active"    expand="full" fill="solid  " shape="round" color="secondary">
+     <!-- <ion-label>{{cliente.id}}</ion-label> Prueba del id del cliente-->
+        <ion-button [routerLink]="['/detalle-cliente',cliente.id]"    fill="solid  " shape="round" color="secondary">
           <ion-icon name="eye"></ion-icon>
-          Ver
+          Detalles
         </ion-button>
+          <ion-button (click)="onRemove(cliente.id)"  fill="solid" shape="round" color="danger"  slot="end">
+            <ion-icon name="trash"></ion-icon>
+            Borrar
+          </ion-button>
+       
     </ion-card-content>
   </ion-card>
 
@@ -30,7 +35,7 @@
       <ion-fab-button routerLink="/calendar" color="success">
       <ion-icon name="calendar"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button routerLink="/add-cliente" (click)="getId()" color="tertiary"> 
+    <ion-fab-button routerLink="/add-cliente"  color="tertiary"> 
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
     </ion-fab-list>
