@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Cliente } from 'src/app/interfaces/cliente';
+import { Cliente, } from 'src/app/interfaces/cliente';
+import{Cuota} from 'src/app/interfaces/cuota';
+import { CuotasService } from 'src/app/services/cuotas.service';
+
 @Component({
   selector: 'app-add-cliente',
   templateUrl: './add-cliente.page.html',
@@ -23,10 +26,17 @@ export class AddClientePage implements OnInit {
   valorCuota:number;
   cuotas:number;
 
+ contadorCuotas:number = 0 //iterador
+
+  public cuota = []
+
+  
+
   constructor(
     private clientesService:ClientesService,
     public toastController: ToastController,
     private router:Router,
+    private cuotasService:CuotasService
     
     ) { }
 
@@ -48,14 +58,12 @@ export class AddClientePage implements OnInit {
      valorCuota:this.valorCuota,
      cuotas:this.cuotas,
     }).then(r =>{
+      console.log(r)
+      this.generarCuotas(r.id)
       this.clienteAgregado(),
       this.router.navigateByUrl('/');
     });
   
-  
-    
-    
-    
     
   }
 
@@ -70,6 +78,26 @@ export class AddClientePage implements OnInit {
   }
 
 
+  generarCuotas(idCliente){ 
+    this.contadorCuotas = 1;
+    
+    while (this.contadorCuotas <= this.cuotas) {
+      this.cuotasService.addCuota({
+        numeroCuota:this.contadorCuotas,
+        monto: this.valorCuota,
+        estado:'pendiente',
+        idCliente:idCliente
+        
+        
+      }).then(c=> console.log('cuota agregada'))
+
+      this.contadorCuotas++
+    }
+
+    console.log('cuotas agregadas')
+
+      
+  }
 
 
 }

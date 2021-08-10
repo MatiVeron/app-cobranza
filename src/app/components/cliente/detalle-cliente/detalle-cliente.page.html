@@ -71,7 +71,7 @@
 
 
 
-<ion-card color="primary"> <!-- Card de las cuotas-->
+<ion-card color="primary" > <!-- Card de las cuotas-->
   <ion-card-header>
     <ion-item color="primary">
       <ion-label class="ion-text-center"> <ion-icon name="card"></ion-icon>Cuotas</ion-label>
@@ -80,40 +80,23 @@
       </ion-button>
     </ion-item>
 
-  </ion-card-header>
-  <ion-list color="primary" *ngIf="mostrarCuotas">
-    <ion-card>
+  </ion-card-header >
+  <ion-list color="primary" *ngIf="mostrarCuotas" >
+    <ion-card *ngFor="let cuota of cuotas">
       <ion-card-header>
-        <ion-card-subtitle>Cuota 1/12</ion-card-subtitle>
+        <ion-card-subtitle>Cuota {{cuota.numeroCuota}} / {{cliente.cuotas}} </ion-card-subtitle>
       </ion-card-header>
         <ion-item>
-          <ion-label> VTO:24/7/2021</ion-label>
-          <ion-label>Monto:120.000$</ion-label>
+
+          
+          <ion-label> Fecha:{{cuota.fechaIncio}}</ion-label>
+          <ion-label>Monto:{{cuota.monto}}</ion-label>
+          <ion-label>Estado:{{cuota.estado}}</ion-label>
           <ion-checkbox slot="end" ></ion-checkbox>
         </ion-item>
     </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>Cuota 2/12</ion-card-subtitle>
-      </ion-card-header>
-        <ion-item>
-          <ion-label> VTO:24/8/2021</ion-label>
-          <ion-label>Monto:120.000$</ion-label>
-          <ion-checkbox slot="end" ></ion-checkbox>
-        </ion-item>
-    </ion-card>
 
-    <ion-card>
-      <ion-card-header>
-        <ion-card-subtitle>Cuota 3/12</ion-card-subtitle>
-      </ion-card-header>
-        <ion-item>
-          <ion-label> VTO:24/9/2021</ion-label>
-          <ion-label>Monto:120.000$</ion-label>
-          <ion-checkbox slot="end" ></ion-checkbox>
-        </ion-item>
-    </ion-card>
   </ion-list>
 
   <ion-toolbar *ngIf="mostrarCuotas" color="primary">

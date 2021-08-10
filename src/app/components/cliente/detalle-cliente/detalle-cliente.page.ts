@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from 'src/app/services/clientes.service';
 import { Cliente } from 'src/app/interfaces/cliente';
+import { Cuota } from 'src/app/interfaces/cuota';
 import { ActivatedRoute } from '@angular/router';
 import { NavController,LoadingController } from '@ionic/angular';
+import { CuotasService } from 'src/app/services/cuotas.service';
 
 @Component({
   selector: 'app-detalle-cliente',
@@ -27,13 +29,22 @@ export class DetalleClientePage implements OnInit {
     valorCuota:0,
     cuotas:0,
   };
+
   clienteId = null;
+  cuotas:Cuota = {
+    numeroCuota:0,
+    monto:0,
+    estado:'',
+    fechaIncio:new Date
+
+  };
 
   constructor(
     private clientesService:ClientesService,
     private route:ActivatedRoute,
     private nav:NavController,
     private loadingController:LoadingController,
+    private cuotasService:CuotasService
   ) { }
 
   ngOnInit() {
@@ -57,11 +68,19 @@ export class DetalleClientePage implements OnInit {
       
     
       console.log(res),
+
       this.cliente = res;
+      this.loadCuotas(this.clienteId)
+
     });
   }
 
-
-
+  loadCuotas(idCliente){
+    return this.cuotasService.getCuotas(idCliente).subscribe(res =>{
+      console.log(res),
+      this.cuotas = res;
+    });
+  }
+    
 
 }
