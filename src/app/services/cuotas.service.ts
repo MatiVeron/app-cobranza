@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, observable } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
-import { AngularFirestore,AngularFirestoreCollection} from '@angular/fire/firestore';
+import { filter, map, switchMap, switchMapTo } from 'rxjs/operators';
+import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/firestore';
 import{Cuota} from 'src/app/interfaces/cuota';
 import firebase from 'firebase';
 
@@ -44,12 +44,15 @@ export class CuotasService {
   }
 
 
-  getCuotas(idCliente){
-    return this.cuota$.pipe(
-      filter(cuota =>cuota.idCliente = idCliente)
- 
-       );
+
   
+  //https://github.com/angular/angularfire/blob/master/docs/firestore/querying-collections.md ---> querys dinamicas
+  //https://www.youtube.com/watch?v=pHYy3wowGoc, https://firebase.google.com/docs/firestore/query-data/index-overview?hl=es-419 ---> indices de busquedas anidados y compuestas firebase
+  getCuotas(idCliente){
+    return this.cuota$=this.db.collection('cuotas',ref=>ref.orderBy('numeroCuota','asc').where('idCliente','==',idCliente)).valueChanges()
+ 
+
   }
+
 
 }

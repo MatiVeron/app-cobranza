@@ -72,6 +72,7 @@ export class AddClientePage implements OnInit {
     const toast = await this.toastController.create({
       message: 'Cliente agregado',
       duration: 2000
+  
     });
     toast.present();
 

@@ -31,13 +31,13 @@ export class DetalleClientePage implements OnInit {
   };
 
   clienteId = null;
-  cuotas:Cuota = {
-    numeroCuota:0,
-    monto:0,
-    estado:'',
-    fechaIncio:new Date
-
-  };
+  // cuotas:Cuota= {
+  //   numeroCuota:0,
+  //   monto:0,
+  //   estado:'',
+  //   fechaIncio:new Date
+  // };
+  cuotas = null;
 
   constructor(
     private clientesService:ClientesService,
@@ -64,21 +64,31 @@ export class DetalleClientePage implements OnInit {
     });
 
     await loading.present();
-    this.clientesService.getCliente(this.clienteId).subscribe( res=>{
+    this.clientesService.getCliente(this.clienteId).subscribe({
+      next:(res)=>{
+        this.cliente = res
+        this.loadCuotas(this.clienteId)
+
+      },
+      error:(e)=>console.log("Error al cargar clientes",e)
       
     
-      console.log(res),
+      // console.log(res),
 
-      this.cliente = res;
-      this.loadCuotas(this.clienteId)
+      // this.cliente = res;
+      // this.loadCuotas(this.clienteId)
 
     });
   }
 
   loadCuotas(idCliente){
-    return this.cuotasService.getCuotas(idCliente).subscribe(res =>{
-      console.log(res),
-      this.cuotas = res;
+    return this.cuotasService.getCuotas(idCliente).subscribe({
+      next:(res)=>{
+        this.cuotas = res
+      },
+      error:(error)=> console.log('Error en las cuotas',error)  
+      // console.log(res),
+      // this.cuotas = res;
     });
   }
     
